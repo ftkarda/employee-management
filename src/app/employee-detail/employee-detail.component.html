@@ -1,0 +1,17 @@
+<mat-card style="width: 40%; margin: 50px 80px">
+  <mat-card-header>
+    <mat-card-title style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">Employee Detail</mat-card-title>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Full Name : {{employee.firstName}} {{employee.lastName}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Username :  {{employee.username}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Birthday : {{employee.birthDate | dateFormat}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">email : {{employee.email}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Basic Salary : {{employee.basicSalary | currency}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Status : {{employee.status}}</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 14px; font-weight: 500;">Group : {{employee.group}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content style="padding-bottom: 20px;">
+    <p style="font-size: 20px; font-weight: bold;">Description :</p>
+    <p style="font-size: 14px; font-weight: 500;">{{employee.description}}</p>
+  </mat-card-content>
+  <button mat-raised-button color="primary" (click)="goBackToList()">OK</button>
+</mat-card>

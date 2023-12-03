@@ -1,0 +1,110 @@
+<mat-card style="margin: 20px;">
+  <mat-card-header style="margin: 50px 50px 0px 30px;">
+    <mat-card-title style="font-size: 24px; font-weight: bold;">Add Employee</mat-card-title>
+    <mat-card-subtitle style="font-size: 16px; font-weight: 500;">please fill all form</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content style="padding-bottom: 20px;">
+    <form [formGroup]="employeeForm" (ngSubmit)="submitForm()" class="form-container">
+      <mat-grid-list [cols]="breakpoint" rowHeight="13vh" (window:resize)="onResize($event)">
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="employeeForm.get('username')?.hasError('required')">Username is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name" formControlName="firstName">
+            <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">First Name is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+            <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">Last Name is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">Wrong Input Email
+              Address</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="employeeForm.get('birthDate')?.hasError('required')">Birth Date is
+              required</mat-error>
+            <mat-error *ngIf="employeeForm.get('birthDate')?.hasError('dateExceedsToday')">Birth Date cannot
+              exceed
+              today</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Basic Salary</mat-label>
+            <input type="number" matInput placeholder="Basic Salary" formControlName="basicSalary">
+            <mat-error *ngIf="employeeForm.get('basicSalary')?.hasError('required')">Basic Salary is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Status</mat-label>
+            <input matInput placeholder="Status" formControlName="status">
+            <mat-error *ngIf="employeeForm.get('status')?.hasError('required')">Status is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <input matInput placeholder="Select a Group" formControlName="group" [matAutocomplete]="groupAuto">
+            <mat-autocomplete #groupAuto="matAutocomplete">
+              <mat-option *ngFor="let group of filteredGroups | async" [value]="group">
+                {{ group }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="employeeForm.get('group')?.hasError('required')">Group is required</mat-error>
+            <mat-error *ngIf="employeeForm.get('group')?.hasError('invalidGroup')">Group not
+              Found</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <mat-form-field style="min-width: 90%;">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description">
+            <mat-error *ngIf="employeeForm.get('description')?.hasError('required')">Description is
+              required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      <span style="display: flex; justify-content: flex-end; margin: 0 30px;">
+        <button mat-raised-button color="secondary" type="button" style="margin-right: 5px;"
+          (click)="navigateToEmployeeList()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">Add
+          Employee</button>
+      </span>
+    </form>
+  </mat-card-content>
+</mat-card>

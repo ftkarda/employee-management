@@ -1,0 +1,12 @@
+.employee-list-container {
+    margin: 20px;
+  }
+  
+  mat-table {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  button {
+    margin-right: 8px;
+  }
